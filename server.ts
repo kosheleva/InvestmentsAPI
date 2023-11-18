@@ -5,7 +5,7 @@ const app = express()
 const port = 3000
 
 const { register, login } = require("./handlers/auth");
-const { create } = require("./handlers/investments");
+const { create, report } = require("./handlers/investments");
 
 var jsonParser = bodyParser.json()
 
@@ -17,6 +17,7 @@ const errorHandler = (err, res) => {
 app.post('/users/register', jsonParser, register);
 app.post('/users/login', jsonParser, login);
 app.post('/investments/create', jsonParser, create);
+app.get('/investments/report', jsonParser, report);
 
 app.use(errorHandler);
 

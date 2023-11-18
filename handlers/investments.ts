@@ -1,5 +1,6 @@
 
 const { Storage } = require("../storage");
+const { sum } = require("../services/calculator");
 
 const create = async (req, res, next) => {
   try {
@@ -20,6 +21,29 @@ const create = async (req, res, next) => {
   }
 };
 
+const report = async (req, res, next) => {
+  try {
+    const email = req.body.email;
+
+    const investmentsStorage = new Storage('investments');
+    const userInvestments = investmentsStorage.get(email);
+
+    if (!userInvestments) {
+      res.status(200).send({ result: 0 });
+    }
+
+    const operationIds = Object.keys(userInvestments);
+    const funds = operationIds.map(operation => userInvestments[operation]["funds"]);
+    const total = sum(funds);
+    const currency = userInvestments[operationIds[0]].currency;
+
+    res.status(200).send({ result: `${total} ${currency}` });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
-  create
+  create,
+  report
 };
