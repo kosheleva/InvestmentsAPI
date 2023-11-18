@@ -1,0 +1,28 @@
+{
+  "name": "investments-api",
+  "scripts": {
+    "start": "node build/server.js",
+    "test": "node_modules/.bin/jest -i --colors --verbose --detectOpenHandles --forceExit ./build",
+    "lint": "node_modules/.bin/eslint .",
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
+    "copy-data-files": "rm -r build/data; mkdir build/data; cp data/investments.json build/data; cp data/users.json build/data"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/jest": "~29.5",
+    "@types/node": "^18.18.9",
+    "@typescript-eslint/eslint-plugin": "~6.2",
+    "@typescript-eslint/parser": "~6.2",
+    "eslint": "~8.46",
+    "eslint-config-prettier": "~9.0",
+    "eslint-plugin-jest": "~27.2",
+    "jest": "^26.0.1",
+    "prettier": "~3.0",
+    "supertest": "^6.0.1",
+    "typescript": "~5.1"
+  }
+}
