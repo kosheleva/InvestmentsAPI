@@ -31,7 +31,7 @@ const login = async (req, res, next) => {
     const user = usersStorage.get(email);
 
     if (!user) {
-      res.status(400).send({ result: "Невірний імейл" });
+      res.status(400).send({ result: "Невірна пошта" });
     }
 
     var result = bcrypt.compareSync(password, user.password);
